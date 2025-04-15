@@ -17,7 +17,7 @@ setup(
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     url="https://github.com/sulaiman-shamasna/RAG-python-library",
-    packages=find_packages(exclude=["tests*", "techniques*"]),
+    packages=find_packages(exclude=["tests*"]),
     entry_points={
         "console_scripts": [
             "adaptive_retrieval=pyrag.techniques.adaptive_retrieval:main",
