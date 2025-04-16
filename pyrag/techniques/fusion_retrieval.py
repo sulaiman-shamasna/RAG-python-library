@@ -45,7 +45,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--input", 
         type=str,
-        default="data/Understanding_Climate_Change.pdf",
+        default="data/the_intelligent_investor_ch_8.pdf",
         help="Path to input PDF file"
     )
     parser.add_argument(
@@ -85,7 +85,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--query",
         type=str,
-        default="What are the impacts of climate change on the environment?",
+        default="How to best handle Mr. Market?",
         help="Query to search for"
     )
     parser.add_argument(
@@ -384,7 +384,7 @@ if __name__ == "__main__":
 Example of run command:
 
 python techniques/fusion_retrieval.py \
-    --input data/climate_report.pdf \
+    --input data/the_intelligent_investor_ch_8.pdf \
     --top-k 10 \
     --alpha 0.6 \
     --chunk-size 1500 \
