@@ -21,6 +21,7 @@ setup(
     entry_points={
         "console_scripts": [
             "adaptive_retrieval=pyrag.techniques.adaptive_retrieval:main",
+            "fusion_retrieval=pyrag.techniques.fusion_retrieval:main",
         ]
     },
     install_requires=read_requirements("requirements.txt"),
