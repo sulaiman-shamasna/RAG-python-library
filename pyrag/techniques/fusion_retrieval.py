@@ -380,3 +380,15 @@ if __name__ == "__main__":
     main()
 
 
+"""
+Example of run command:
+
+python techniques/fusion_retrieval.py \
+    --input data/climate_report.pdf \
+    --top-k 10 \
+    --alpha 0.6 \
+    --chunk-size 1500 \
+    --chunk-overlap 300 \
+    --persist-dir ./cache \
+    --verbose
+"""
