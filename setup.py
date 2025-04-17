@@ -23,6 +23,7 @@ setup(
             "adaptive_retrieval=pyrag.techniques.adaptive_retrieval:main",
             "fusion_retrieval=pyrag.techniques.fusion_retrieval:main",
             "reliable_rag=pyrag.techniques.reliable_rag:main",
+            "rag_with_feedback_loop=pyrag.techniques.rag_with_feedback_loop:main",
         ]
     },
     install_requires=read_requirements("requirements.txt"),
