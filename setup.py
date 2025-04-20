@@ -24,6 +24,7 @@ setup(
             "fusion_retrieval=pyrag.techniques.fusion_retrieval:main",
             "reliable_rag=pyrag.techniques.reliable_rag:main",
             "rag_with_feedback_loop=pyrag.techniques.rag_with_feedback_loop:main",
+            "graph_rag=pyrag.techniques.graph_rag:main",
         ]
     },
     install_requires=read_requirements("requirements.txt"),
