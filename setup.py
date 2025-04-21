@@ -10,7 +10,7 @@ def read_requirements(filename):
 
 setup(
     name="PyRAG",
-    version="1.6.0",
+    version="1.6.1",
     author="Sulaiman Shamasna",
     author_email="suleiman.shamasneh@gmail.com",
     description="A Python library for RAG systems - A deep dive into Retrieval-Augmented Generation.",
