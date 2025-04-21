@@ -401,49 +401,16 @@ def get_user_question(default_question: str) -> str:
     return user_input.strip() if user_input.strip() else default_question
 
 
-def main(config: RaptorConfig, file_path: str):
-    """Main execution function for RAPTOR system.
-    
-    Args:
-        config: RAPTOR configuration
-        file_path: Path to input PDF file
-    """
-    documents = load_documents(file_path)
-    texts = [doc.page_content for doc in documents]
-    
-    # Build RAPTOR tree
-    tree_builder = RaptorTreeBuilder(config)
-    tree_results = tree_builder.build_raptor_tree(texts)
-    
-    # Set up retrieval system
-    retriever = RaptorRetriever(config)
-    vectorstore = retriever.build_vectorstore(tree_results)
-    compression_retriever = retriever.create_retriever(vectorstore)
-    
-    question = get_user_question(config.default_question)
-    
-    result = retriever.raptor_query(question, compression_retriever, config.max_levels)
-    print_query_details(result)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval")
-    parser.add_argument("--file", type=str, default="data/the_intelligent_investor_ch_8.pdf",
-                       help="Path to the input PDF file")
-    parser.add_argument("--max_levels", type=int, default=3,
-                       help="Maximum levels for the RAPTOR tree")
-    parser.add_argument("--n_clusters", type=int, default=10,
-                       help="Number of clusters for each level")
-    parser.add_argument("--retrieval_k", type=int, default=3,
-                       help="Number of documents to retrieve at each level")
-    parser.add_argument("--llm_model", type=str, default="gpt-3.5-turbo",
-                       help="LLM model to use for summarization and question answering")
-    parser.add_argument("--default_question", type=str, 
-                       default="Who is Mr.Market?",
-                       help="Default question to use if none is provided")
-    
+def main():
+    parser = argparse.ArgumentParser(description="Run RAPTOR tree building and querying.")
+    parser.add_argument('--file', type=str, default="data/the_intelligent_investor_ch_8.pdf", help='Path to the input PDF file')
+    parser.add_argument('--max_levels', type=int, default=3, help='Maximum number of tree levels')
+    parser.add_argument('--n_clusters', type=int, default=10, help='Number of clusters at each level')
+    parser.add_argument('--retrieval_k', type=int, default=3, help='Number of documents to retrieve per query')
+    parser.add_argument('--llm_model', type=str, default="gpt-3.5-turbo", help='OpenAI model to use')
+    parser.add_argument('--default_question', type=str, default="Who is Mr. Market?", help='Default question to ask')
     args = parser.parse_args()
-    
+
     config = RaptorConfig(
         max_levels=args.max_levels,
         n_clusters=args.n_clusters,
@@ -452,4 +419,53 @@ if __name__ == "__main__":
         default_question=args.default_question
     )
     
-    main(config, args.file)
+    file_path = args.file
+    
+    # Build RAPTOR tree
+    documents = load_documents(file_path)
+    texts = [doc.page_content for doc in documents]
+    
+    tree_builder = RaptorTreeBuilder(config)
+    tree_results = tree_builder.build_raptor_tree(texts)
+    
+    # Build vectorstore and retriever
+    retriever_builder = RaptorRetriever(config)
+    vectorstore = retriever_builder.build_vectorstore(tree_results)
+    retriever = retriever_builder.create_retriever(vectorstore)
+    
+    # Query the system
+    question = get_user_question(config.default_question)
+    result = retriever_builder.raptor_query(question, retriever, max_level=config.max_levels)
+    
+    print_query_details(result)
+
+
+
+if __name__ == "__main__":
+    # parser = argparse.ArgumentParser(description="RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval")
+    # parser.add_argument("--file", type=str, default="data/the_intelligent_investor_ch_8.pdf",
+    #                    help="Path to the input PDF file")
+    # parser.add_argument("--max_levels", type=int, default=3,
+    #                    help="Maximum levels for the RAPTOR tree")
+    # parser.add_argument("--n_clusters", type=int, default=10,
+    #                    help="Number of clusters for each level")
+    # parser.add_argument("--retrieval_k", type=int, default=3,
+    #                    help="Number of documents to retrieve at each level")
+    # parser.add_argument("--llm_model", type=str, default="gpt-3.5-turbo",
+    #                    help="LLM model to use for summarization and question answering")
+    # parser.add_argument("--default_question", type=str, 
+    #                    default="Who is Mr.Market?",
+    #                    help="Default question to use if none is provided")
+    
+    # args = parser.parse_args()
+    
+    # config = RaptorConfig(
+    #     max_levels=args.max_levels,
+    #     n_clusters=args.n_clusters,
+    #     retrieval_k=args.retrieval_k,
+    #     llm_model=args.llm_model,
+    #     default_question=args.default_question
+    # )
+    
+    # main(config, args.file)
+    main()
