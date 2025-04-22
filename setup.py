@@ -10,7 +10,7 @@ def read_requirements(filename):
 
 setup(
     name="PyRAG",
-    version="1.6.1",
+    version="1.7.0",
     author="Sulaiman Shamasna",
     author_email="suleiman.shamasneh@gmail.com",
     description="A Python library for RAG systems - A deep dive into Retrieval-Augmented Generation.",
@@ -26,6 +26,7 @@ setup(
             "rag_with_feedback_loop=pyrag.techniques.rag_with_feedback_loop:main",
             "graph_rag=pyrag.techniques.graph_rag:main",
             "raptor=pyrag.techniques.raptor:main",
+            "self_rag=pyrag.techniques.self_rag:main",
         ]
     },
     install_requires=read_requirements("requirements.txt"),
