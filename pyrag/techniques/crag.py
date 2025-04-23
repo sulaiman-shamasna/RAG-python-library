@@ -157,3 +157,26 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+""" Output Example:
+
+### .... This is a part from the long answer
+
+Response generated
+
+Query: What are the key points of Chapter 8?
+Answer: Chapter 8, titled "The Investor and Market Fluctuations," discusses the relationship between an investor's portfolio and market price changes. Here are the key points:
+
+1. **Impact of Bond Maturity**: Investors who allocate their funds in high-grade bonds with shorter maturities (around seven years or less) are less affected by market price fluctuations. This stability also applies to U.S. savings bonds, which can be redeemed at cost or more.
+
+2. **Longer-Term Bonds and Stocks**: In contrast, longer-term bonds may experience significant price volatility over their lifetimes. Additionally, common-stock portfolios are expected to fluctuate in value over several years.
+
+3. **Preparedness for Fluctuations**: Investors should be aware of these potential fluctuations and prepare both financially and psychologically. Understanding market dynamics is crucial for managing expectations and strategies.
+
+4. **Market Opportunities**: Investors should aim to benefit from market changes, particularly through the appreciation of stock values over time. They may also seek to capitalize on advantageous buying and selling opportunities.
+
+These points emphasize the importance of understanding market fluctuations and preparing for them as part of a sound investment strategy.
+
+Sources: Retrieved document.
+"""
